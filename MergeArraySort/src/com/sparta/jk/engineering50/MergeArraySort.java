@@ -1,21 +1,32 @@
 package com.sparta.jk.engineering50;
 
+import java.util.Arrays;
+
 /*
 - Takes two sorted arrays (asc order) as inputs and sorts them into one larger array (asc order)
 - Can be used to implement merge-sort (divide and conquer) algorithm
  */
 public class MergeArraySort {
-    private int[] intArray1;
-    private int[] intArray2;
-    private int[] newArray;
 
-    public MergeArraySort(int[] intArray1, int[] intArray2) {
-        this.intArray1 = intArray1;
-        this.intArray2 = intArray2;
-        newArray = new int[(intArray1.length + intArray2.length)]; //initialises newArray after lengths of input arrays can be determined
+    public int[] sort(int[] arr){
+        int[] l = Arrays.copyOfRange(arr, 0, arr.length/2);
+        int[] r = Arrays.copyOfRange(arr, arr.length/2, arr.length);
+
+        if (arr.length > 1) {
+            System.out.println("L "+(Arrays.toString(Arrays.copyOfRange(arr, 0, arr.length / 2))));
+            System.out.println("R "+(Arrays.toString(Arrays.copyOfRange(arr, arr.length/2, arr.length))));
+            sort(l);
+            sort(r);
+        }
+        return merge(l, r);
+
     }
 
-    public int[] sort() {
+
+    //merges two ordered arrays by taking top from whatever is smallest
+    public int[] merge(int[] intArray1, int[] intArray2) {
+
+        int[] newArray = new int[(intArray1.length + intArray2.length)]; //initialises newArray after lengths of input arrays can be determined
         int pointer1 = 0;
         int pointer2 = 0;
         int newPointer = 0;
