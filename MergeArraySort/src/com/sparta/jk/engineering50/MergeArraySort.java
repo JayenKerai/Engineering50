@@ -8,15 +8,13 @@ import java.util.Arrays;
  */
 public class MergeArraySort {
 
-    public int[] sort(int[] arr){
-        int[] l = Arrays.copyOfRange(arr, 0, arr.length/2);
-        int[] r = Arrays.copyOfRange(arr, arr.length/2, arr.length);
+    public int[] sort(int[] arr) {
+        int[] l = Arrays.copyOfRange(arr, 0, arr.length / 2);
+        int[] r = Arrays.copyOfRange(arr, arr.length / 2, arr.length);
 
         if (arr.length > 1) {
-            System.out.println("L "+(Arrays.toString(Arrays.copyOfRange(arr, 0, arr.length / 2))));
-            System.out.println("R "+(Arrays.toString(Arrays.copyOfRange(arr, arr.length/2, arr.length))));
-            sort(l);
-            sort(r);
+            l = sort(l);
+            r = sort(r);
         }
         return merge(l, r);
 
